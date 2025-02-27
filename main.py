@@ -20,6 +20,11 @@ class PromptRequest(BaseModel):
     tone: str = "neutral"
     output_format: str = "plain_text"
 
+# ✅ New Root Endpoint to Prevent 404
+@app.get("/")
+def home():
+    return {"message": "FastAPI is live! Visit /docs for API documentation."}
+
 @app.post("/refine-prompt/")
 async def refine_prompt(request: PromptRequest):
     try:
